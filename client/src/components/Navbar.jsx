@@ -20,6 +20,8 @@ const Navbar = () => {
         <i className="fa fa-sign-in me-2"></i>Login</NavLink>
       <NavLink to="/register" className="btn btn-outline-light ms-3 px-4 rounded-pill">
       <i className="fa fa-user-plus me-2"></i>Sign Up</NavLink>
+      <NavLink to="/logout" className="btn btn-outline-light ms-3 px-4 rounded-pill">
+      <i className="fa fa-sign-out me-2"></i>Logout</NavLink>
     </div>
   </div>
 </nav>

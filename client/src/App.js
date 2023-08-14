@@ -4,6 +4,7 @@ import Home from './components/Home';
 import {Route, Routes} from 'react-router';
 import Login from './components/Login';
 import Register from './components/Register';
+import Logout from './components/Logout';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
     <Route exact path="/"Component={Home} />
     <Route exact path="/login"Component={Login} />
     <Route exact path="/register"Component={Register} />
+    <Route exact path="/logout"Component={Logout} />
     </Routes>
     </>
   );

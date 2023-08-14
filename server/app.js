@@ -71,6 +71,12 @@ app.post('/login', async (req, res)=>{
         res.status(400).send(error);
     }
 })
+
+app.get('/logout', (req, res)=>{
+    res.clearCookie("jwt", {path : '/'})
+    res.status(200).send("User Logged Out")
+})
+
 app.listen(port, ()=>{
     console.log("Server is listening")
 })
