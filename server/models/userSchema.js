@@ -1,32 +1,34 @@
-
 const mongoose = require('mongoose');
 const bcryptjs = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
+// User Schema 
 const userSchema = new mongoose.Schema({
-    username: {
-        type: String,
-        required: true,
-        unique: true
+    username : {
+        type : String,
+        required : true,
+        unique : true
     },
-    email: {
-        type: String,
-        required: true,
-        unique: true,
-    }, 
+    email : {
+        type : String,
+        required : true,
+        unique : true,
+    },
     password : {
         type : String,
-        required: true
+        required : true
     },
-    tokens: [{
-        token : {
-            type: String,
-            required: true
+    tokens : [
+        {
+            token : {
+                type : String,
+                required : true
+            }
         }
-    }]
+    ]
 })
 
-//password generating
+// Hashing Password 
 userSchema.pre('save', async function(next){
     if(this.isModified('password')){
         this.password = bcryptjs.hashSync(this.password, 10);
@@ -34,18 +36,19 @@ userSchema.pre('save', async function(next){
     next();
 })
 
-//token
+// token
 userSchema.methods.generateToken = async function(){
-    try{
+    try {
         let generatedToken = jwt.sign({_id : this._id}, process.env.SECRET_KEY);
         this.tokens = this.tokens.concat({token : generatedToken});
         await this.save();
         return generatedToken;
-    } catch(error){
-            console.log(error)
+    } catch (error) {
+        console.log(error)
     }
 }
 
-const Users =  new mongoose.model("USER", userSchema)
+// Create Model
+const Users = new mongoose.model("USER", userSchema);
 
 module.exports = Users;
