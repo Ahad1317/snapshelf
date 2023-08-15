@@ -60,7 +60,7 @@ function Shelf(){
   };
 
   return (
-    <div className="Shelf">
+    <div className="container shadow my-5 login-container">
       <h1>Image Uploader</h1>
       <input type="file" accept="image/*" onChange={handleFileChange} />
       <button onClick={handleUpload}>Upload</button>
